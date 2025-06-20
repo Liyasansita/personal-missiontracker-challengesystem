@@ -19,7 +19,7 @@ function App() {
     const habitsArray = habits.split(",").map((h) => h.trim());
 
     try {
-      const res = await axios.post("http://localhost:5000/api/users", {
+      const res = await axios.post("https://tracker-gioz.onrender.com/api/users", {
         name,
         habits: habitsArray,
       });
@@ -36,7 +36,7 @@ function App() {
 
   const fetchChallenges = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/challenges");
+      const res = await axios.get("https://tracker-gioz.onrender.com/api/challenges");
       setChallenges(res.data);
     } catch (err) {
       console.error("Error fetching challenges", err);
@@ -46,7 +46,7 @@ function App() {
   const refreshUser = async () => {
     if (!userId) return;
     try {
-      const userRes = await axios.get(`http://localhost:5000/api/users/${userId}`);
+      const userRes = await axios.get(`https://tracker-gioz.onrender.com/api/users/${userId}`);
       const user = userRes.data;
       setScore(user.score);
       setStatus(user.status || "");
@@ -60,7 +60,7 @@ function App() {
   const joinChallenge = async (challengeId) => {
     if (!userId) return alert("Please submit your data first.");
     try {
-      await axios.post(`http://localhost:5000/api/challenges/join/${userId}`, {
+      await axios.post(`https://tracker-gioz.onrender.com/api/challenges/join/${userId}`, {
         challengeId,
       });
       await refreshUser();
@@ -72,7 +72,7 @@ function App() {
   const completeChallenge = async (challengeId) => {
     if (!userId) return alert("Please submit your data first.");
     try {
-      await axios.post(`http://localhost:5000/api/challenges/complete/${userId}`, {
+      await axios.post(`https://tracker-gioz.onrender.com/api/challenges/complete/${userId}`, {
         challengeId,
       });
       await refreshUser();
@@ -170,4 +170,5 @@ function App() {
   );
 }
 
-export default App; 
+export default App;
+
