@@ -6,7 +6,11 @@ const userRoutes = require("./routes/userRoutes");
 const challengeRoutes = require("./routes/challengeRoutes");
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: 'https://personal-missiontracker-challengesystem.onrender.com', // ✅ This is your frontend URI
+  credentials: true
+}));
+
 app.use(express.json());
 
 mongoose.connect("mongodb://127.0.0.1:27017/personal-tracker", {
